@@ -80,7 +80,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
       {/* Hero Section */}
       <section className="relative flex flex-col items-center justify-center h-screen text-center overflow-hidden">
         <Particles
@@ -94,7 +94,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="text-5xl font-bold mb-2"
+            className="text-5xl font-bold mb-2 drop-shadow-lg bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent"
           >
             Saheli Mahapatra
           </motion.h1>
@@ -127,18 +127,18 @@ export default function Home() {
       </section>
 
       {/* About Me Section */}
-      <section id="about" className="py-20 text-center">
-        <h2 className="text-3xl font-bold mb-6">About Me</h2>
-        <p className="max-w-2xl mx-auto mb-8">I am a passionate Full Stack Developer with expertise in MERN, .NET, and PostgreSQL. I love building modern, scalable applications.</p>
-        <div className="flex flex-wrap justify-center gap-4">
+      <section id="about" className="py-24 text-center bg-white dark:bg-gray-900">
+        <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">About Me</h2>
+        <p className="max-w-2xl mx-auto mb-10 text-lg text-gray-900 dark:text-white">I am a passionate Full Stack Developer with expertise in MERN, .NET, and PostgreSQL. I love building modern, scalable applications.</p>
+        <div className="flex flex-wrap justify-center gap-6">
           {techIcons.map(({ Icon, name }) => (
             <motion.div
               key={name}
-              whileHover={{ scale: 1.1 }}
-              className="flex flex-col items-center p-2"
+              whileHover={{ scale: 1.15 }}
+              className="flex flex-col items-center p-4 glass rounded-xl hover:shadow-xl transition-all duration-300 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
             >
-              <Icon className="text-4xl" />
-              <span className="mt-1">{name}</span>
+              <Icon className="text-4xl mb-1 text-primary" />
+              <span className="mt-1 text-sm font-medium">{name}</span>
             </motion.div>
           ))}
         </div>
@@ -161,8 +161,8 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.2, duration: 0.5 }}
-              whileHover={{ y: -5 }}
-              className="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden hover-transition group"
+              whileHover={{ y: -8, scale: 1.03 }}
+              className="glass rounded-2xl hover:shadow-2xl transition-all duration-300 overflow-hidden group border border-white/20 dark:border-slate-200/10 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
             >
               {/* Project Image Container */}
               <div className="relative w-full h-48 overflow-hidden">
@@ -208,7 +208,7 @@ export default function Home() {
                   {proj.tech.split(", ").map((tech) => (
                     <span 
                       key={tech}
-                      className="px-3 py-1 text-xs bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded-full"
+                      className="px-3 py-1 text-xs bg-accent/20 dark:bg-accent/40 text-accent-dark dark:text-accent-light rounded-full shadow-sm"
                     >
                       {tech}
                     </span>
@@ -219,7 +219,7 @@ export default function Home() {
                     href={proj.demo} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="flex-1 px-4 py-2 bg-blue-500 text-white text-center rounded-lg hover-transition hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-sm font-medium"
+                    className="flex-1 px-4 py-2 bg-primary text-white text-center rounded-lg shadow-md hover:scale-105 hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent text-sm font-medium"
                   >
                     Live Demo
                   </a>
@@ -227,7 +227,7 @@ export default function Home() {
                     href={proj.github} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="flex-1 px-4 py-2 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-white text-center rounded-lg hover-transition hover:bg-gray-300 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 text-sm font-medium"
+                    className="flex-1 px-4 py-2 bg-accent/20 dark:bg-accent/40 text-accent-dark dark:text-accent-light text-center rounded-lg shadow-md hover:scale-105 hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent text-sm font-medium"
                   >
                     Source Code
                   </a>
@@ -239,12 +239,12 @@ export default function Home() {
       </section>
 
       {/* Resume Section */}
-      <section id="resume" className="py-20 text-center">
+      <section id="resume" className="py-24 text-center bg-white dark:bg-gray-900">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-3xl font-bold mb-6"
+          className="text-3xl font-bold mb-8 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent"
         >
           Resume
         </motion.h2>
@@ -263,18 +263,18 @@ export default function Home() {
           whileInView={{ opacity: 1, scale: 1 }}
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.3 }}
-          className="inline-block px-6 py-3 bg-blue-500 text-white rounded-lg shadow-lg hover-transition hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          className="inline-block px-8 py-3 bg-primary text-white rounded-lg shadow-md hover:scale-105 hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent"
         >
           Download Resume
         </motion.a>
 
         {/* Enhanced Visual Timeline */}
-        <div className="mt-16 max-w-3xl mx-auto">
+        <div className="mt-20 max-w-3xl mx-auto">
           <motion.div 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="relative"
+            className="relative glass rounded-2xl p-8 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
           >
             {/* Timeline line */}
             <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-blue-200 dark:bg-blue-800"></div>
@@ -467,18 +467,18 @@ export default function Home() {
       </section>
 
       {/* Education Section (Optional) */}
-      <section id="education" className="py-20 bg-gray-100 dark:bg-gray-800 text-center">
-        <h2 className="text-3xl font-bold mb-6">Education</h2>
-        <p>B.Tech CSE (2024)</p>
+      <section id="education" className="py-24 bg-gray-100 dark:bg-gray-800 text-center">
+        <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">Education</h2>
+        <p className="text-gray-900 dark:text-white">B.Tech CSE (2024)</p>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 text-center">
-        <h2 className="text-3xl font-bold mb-6">Contact</h2>
+      <section id="contact" className="py-24 text-center bg-white dark:bg-gray-900">
+        <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">Contact</h2>
         <form 
           action="https://formspree.io/f/manozyzk" 
           method="POST"
-          className="max-w-md mx-auto mb-8"
+          className="max-w-md mx-auto mb-10 glass rounded-2xl p-8 flex flex-col gap-6 border border-white/30 dark:border-slate-200/10 transition-all duration-300 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
         >
           <div className="mb-4">
             <input 

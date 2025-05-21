@@ -1,29 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { FaMoon, FaSun } from "react-icons/fa";
 
-export function DarkModeToggle() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+type Props = {
+  theme: 'light' | 'dark';
+  setTheme: (theme: 'light' | 'dark') => void;
+};
 
-  useEffect(() => {
-    // Check initial theme
-    const stored = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initialTheme = stored || (prefersDark ? 'dark' : 'light');
-    
-    console.log('Initial theme:', initialTheme);
-    setTheme(initialTheme as 'light' | 'dark');
-    document.documentElement.classList.toggle('dark', initialTheme === 'dark');
-  }, []);
-
+export function DarkModeToggle({ theme, setTheme }: Props) {
   const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    console.log('Toggling theme to:', newTheme);
-    
-    setTheme(newTheme);
-    document.documentElement.classList.toggle('dark', newTheme === 'dark');
-    localStorage.setItem('theme', newTheme);
+    setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
   return (
