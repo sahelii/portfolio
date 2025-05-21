@@ -24,3 +24,28 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Tailwind directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Tailwind layer for smooth scroll and dark mode toggle */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  html.dark {
+    @apply bg-gray-900 text-white;
+  }
+  html.light {
+    @apply bg-white text-gray-900;
+  }
+}
+
+/* Custom transition for smooth hover effects */
+@layer components {
+  .hover-transition {
+    @apply transition-all duration-300 ease-in-out;
+  }
+}
