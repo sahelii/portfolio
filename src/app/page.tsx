@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useSpring, useAnimationControls } from "framer-motion";
+import { motion, useScroll, useSpring } from "framer-motion";
 import { FaReact, FaNodeJs, FaDocker, FaGithub, FaLinkedin, FaEnvelope, FaExternalLinkAlt, FaHtml5, FaCss3Alt, FaBootstrap, FaAngular, FaArrowUp, FaChevronDown, FaPython, FaJs } from "react-icons/fa";
 import { SiNextdotjs, SiMongodb, SiDotnet, SiPostgresql, SiTailwindcss, SiTypescript, SiExpress, SiFlutter, SiDart } from "react-icons/si";
 import { Typewriter } from "react-simple-typewriter";
@@ -323,7 +323,7 @@ export default function Home() {
               transition={{ delay: 0.1, duration: 0.8 }}
               className="text-2xl md:text-3xl mb-4 text-gray-700 dark:text-gray-300"
             >
-              Hi, I'm
+              Hi, I&apos;m
             </motion.h2>
             <h1 className="text-6xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-gradient-x">
               Saheli Mahapatra
