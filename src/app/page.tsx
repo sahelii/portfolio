@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useSpring, useAnimationControls } from "framer-motion";
-import { FaReact, FaNodeJs, FaDocker, FaGithub, FaLinkedin, FaEnvelope, FaExternalLinkAlt, FaHtml5, FaCss3Alt, FaBootstrap, FaAngular, FaJava, FaArrowUp, FaChevronDown, FaPython } from "react-icons/fa";
+import { FaReact, FaNodeJs, FaDocker, FaGithub, FaLinkedin, FaEnvelope, FaExternalLinkAlt, FaHtml5, FaCss3Alt, FaBootstrap, FaAngular, FaArrowUp, FaChevronDown, FaPython, FaJs } from "react-icons/fa";
 import { SiNextdotjs, SiMongodb, SiDotnet, SiPostgresql, SiTailwindcss, SiTypescript, SiExpress, SiFlutter, SiDart } from "react-icons/si";
 import { Typewriter } from "react-simple-typewriter";
 import { Particles } from "react-tsparticles";
@@ -23,15 +23,15 @@ const techIcons = [
   { Icon: FaNodeJs, name: "Node.js", category: "Backend" },
   { Icon: SiExpress, name: "Express.js", category: "Backend" },
   { Icon: SiDotnet, name: ".NET", category: "Backend" },
-  { Icon: FaJava, name: "Java", category: "Backend" },
-  { Icon: FaPython, name: "Python", category: "Backend" },
   
   // Databases
   { Icon: SiMongodb, name: "MongoDB", category: "Database" },
   { Icon: SiPostgresql, name: "PostgreSQL", category: "Database" },
   
   // Languages & Tools
+  { Icon: FaJs, name: "JavaScript", category: "Language" },
   { Icon: SiTypescript, name: "TypeScript", category: "Language" },
+  { Icon: FaPython, name: "Python", category: "Language" },
   { Icon: SiFlutter, name: "Flutter", category: "Mobile" },
   { Icon: SiDart, name: "Dart", category: "Mobile" },
   { Icon: FaDocker, name: "Docker", category: "DevOps" }
@@ -152,7 +152,6 @@ const navItems = [
 // Add floating navigation component
 const FloatingNav = () => {
   const [activeSection, setActiveSection] = useState("");
-  const controls = useAnimationControls();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -404,57 +403,12 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-xl mb-12 text-center text-gray-700 dark:text-gray-300 leading-relaxed"
           >
-            I am a passionate Full Stack Developer with expertise in MERN, .NET, and PostgreSQL. I love building modern, scalable applications that make a difference.
+            I&apos;m a passionate Full Stack Developer with expertise in MERN, .NET, and PostgreSQL. I love building modern, scalable applications that make a difference.
           </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
-          >
-            {Object.entries(
-              techIcons.reduce((acc, tech) => {
-                if (!acc[tech.category]) acc[tech.category] = [];
-                acc[tech.category].push(tech);
-                return acc;
-              }, {} as Record<string, typeof techIcons>)
-            ).map(([category, techs]) => (
-              <div key={category} className="col-span-full">
-                <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">{category}</h3>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                  {techs.map(({ Icon, name }, index) => (
-                    <motion.div
-                      key={name}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      whileHover={{ scale: 1.1, y: -5 }}
-                      transition={{ duration: 0.3, delay: index * 0.1 }}
-                      className="group relative flex flex-col items-center p-6 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl hover:shadow-glow transition-all duration-300"
-                    >
-                      <Icon className="text-4xl mb-3 text-primary" />
-                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{name}</span>
-                      <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-secondary/90 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <div className="text-white text-center p-4">
-                          <p className="font-semibold mb-2">Proficiency Level</p>
-                          <div className="w-32 h-2 bg-white/20 rounded-full overflow-hidden">
-                            <motion.div
-                              initial={{ width: 0 }}
-                              whileHover={{ width: "85%" }}
-                              className="h-full bg-white rounded-full"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </motion.div>
         </div>
       </section>
 
-      {/* Skills Section - Updated Layout */}
+      {/* Skills Section */}
       <section id="skills" className="relative py-24">
         <div className="absolute inset-0 bg-gradient-to-b from-background-light/50 to-background-light dark:from-background-dark/50 dark:to-background-dark" />
         <div className="relative z-10 max-w-7xl mx-auto px-4">
@@ -467,7 +421,6 @@ export default function Home() {
             Skills & Expertise
           </motion.h2>
           
-          {/* Skills Grid with Tabs */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {Object.entries(
               techIcons.reduce((acc, tech) => {
@@ -498,17 +451,6 @@ export default function Home() {
                     >
                       <Icon className="text-2xl text-primary" />
                       <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{name}</span>
-                      <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-secondary/90 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <div className="text-white text-center p-2">
-                          <div className="w-24 h-1.5 bg-white/20 rounded-full overflow-hidden">
-                            <motion.div
-                              initial={{ width: 0 }}
-                              whileHover={{ width: "85%" }}
-                              className="h-full bg-white rounded-full"
-                            />
-                          </div>
-                        </div>
-                      </div>
                     </motion.div>
                   ))}
                 </div>
