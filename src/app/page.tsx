@@ -625,7 +625,7 @@ export default function Home() {
                       transition={{ delay: 0.4 }}
                       className="mt-2 text-gray-700 dark:text-gray-300"
                     >
-                      Building robust REST APIs, optimizing backend performance, and managing large-scale ETL pipelines.
+                      Developing secure REST APIs, integrating RabbitMQ for async processing, and managing PostgreSQL-based flows in GRIPS 3.0 for government revenue systems.
                     </motion.p>
                   </div>
                 </motion.div>
@@ -661,7 +661,7 @@ export default function Home() {
                       transition={{ delay: 0.4 }}
                       className="mt-2 text-gray-700 dark:text-gray-300"
                     >
-                      Developed Angular/.NET modules and form-based UIs for ERP systems with SQL Server backend.
+                      Contributed to core ERP product modules with a focus on backend-heavy architecture, workflow automation, and data consistency across dynamic form systems.
                     </motion.p>
                   </div>
                 </motion.div>
@@ -681,7 +681,7 @@ export default function Home() {
                       transition={{ delay: 0.2 }}
                       className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
                     >
-                      Software Developer Intern – ARC
+                      SDE Intern – ARC
                     </motion.h3>
                     <motion.p 
                       initial={{ opacity: 0 }}
@@ -717,7 +717,7 @@ export default function Home() {
                       transition={{ delay: 0.2 }}
                       className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
                     >
-                      Technical Developer Intern – Basel
+                      SDE Intern – Basel
                     </motion.h3>
                     <motion.p 
                       initial={{ opacity: 0 }}
@@ -733,8 +733,7 @@ export default function Home() {
                       transition={{ delay: 0.4 }}
                       className="mt-2 text-gray-700 dark:text-gray-300"
                     >
-                      Built Node.js APIs and integrated geolocation for real-time data in a farmer-focused mobile app.
-                    </motion.p>
+Worked on a farmer-first mobile platform, delivering backend systems that supported geolocation, personalized access, and real-time data flows.                    </motion.p>
                   </div>
                 </motion.div>
 
