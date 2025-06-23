@@ -39,6 +39,15 @@ const techIcons = [
 
 const projects = [
   { 
+    title: "CreditFlowPulse", 
+    description: "A comprehensive credit management and financial analytics platform that provides real-time credit monitoring, risk assessment, and financial insights. Features include credit score tracking, payment reminders, and predictive analytics for financial planning.",
+    tech: "React, Python, Django, ORM, PostgreSQL", 
+    demo: "https://creditflowpulse-frontend.vercel.app/", 
+    github: "https://github.com/sahelii/CreditFlowPulse",
+    image: "/projects/creditFlowPulse.png",
+    imageAlt: "CreditFlowPulse Platform Preview"
+  },
+  { 
     title: "Blog Application", 
     description: "A full-stack blog application with user authentication, CRUD operations, and responsive design. Features include user profiles, post creation, comments, and real-time updates.",
     tech: "React, Node.js, MongoDB, Express, JWT", 
