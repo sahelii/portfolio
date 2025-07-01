@@ -76,7 +76,7 @@ const projects = [
   }
 ];
 
-const resumeLink = "/resume.pdf";
+const resumeLink = "/SaheliMahapatra.pdf";
 
 const socialLinks = [
   { Icon: FaGithub, url: "https://github.com/sahelii", label: "GitHub" },
