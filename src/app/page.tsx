@@ -618,7 +618,7 @@ export default function Home() {
                       transition={{ delay: 0.2 }}
                       className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
                     >
-                      Software Engineer – NIC
+                      Software Engineer – SISL Infotech
                     </motion.h3>
                     <motion.p 
                       initial={{ opacity: 0 }}
