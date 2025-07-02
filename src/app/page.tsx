@@ -520,7 +520,7 @@ export default function Home() {
               Hi, I&apos;m
             </motion.h2>
             <h1 className="text-6xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-gradient-x">
-              Saheli Mahapatra
+              Saheli
             </h1>
             <div className="text-2xl md:text-3xl mb-8 font-light text-gray-700 dark:text-gray-300">
               <Typewriter
