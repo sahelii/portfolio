@@ -4,6 +4,7 @@ import "./globals.css";
 import { Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
+import GlobalParticles from "@/components/GlobalParticles";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -60,7 +61,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased ${inter.className} min-h-screen bg-gradient-to-br from-background-light to-background-light dark:from-background-dark dark:to-background-dark text-gray-900 dark:text-white transition-all duration-500 relative`}
       >
-       
+        {/* Global Particles Animation */}
+        <GlobalParticles />
         <div className="fixed inset-0 bg-gradient-radial from-primary/10 to-transparent dark:from-primary/15 dark:to-transparent pointer-events-none" />
         
         {/* Animated mesh gradient */}

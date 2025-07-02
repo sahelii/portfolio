@@ -2,10 +2,8 @@
 
 import { motion, useScroll, useSpring } from "framer-motion";
 import { FaReact, FaNodeJs, FaDocker, FaGithub, FaLinkedin, FaEnvelope, FaExternalLinkAlt, FaHtml5, FaCss3Alt, FaBootstrap, FaAngular, FaArrowUp, FaChevronDown, FaPython, FaJs, FaCheck, FaExclamationTriangle } from "react-icons/fa";
-import { SiNextdotjs, SiMongodb, SiDotnet, SiPostgresql, SiTailwindcss, SiTypescript, SiExpress, SiFlutter, SiDart } from "react-icons/si";
+import { SiNextdotjs, SiMongodb, SiDotnet, SiPostgresql, SiTailwindcss, SiTypescript, SiExpress, SiFlutter, SiDart, SiDjango } from "react-icons/si";
 import { Typewriter } from "react-simple-typewriter";
-import { Particles } from "react-tsparticles";
-import { loadSlim } from "tsparticles-slim";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
@@ -23,6 +21,8 @@ const techIcons = [
   { Icon: FaNodeJs, name: "Node.js", category: "Backend" },
   { Icon: SiExpress, name: "Express.js", category: "Backend" },
   { Icon: SiDotnet, name: ".NET", category: "Backend" },
+  { Icon: SiDjango, name: "Django", category: "Backend" },
+
   
   // Databases
   { Icon: SiMongodb, name: "MongoDB", category: "Database" },
@@ -432,65 +432,6 @@ export default function Home() {
     return <LoadingState />;
   }
 
-  // Updated particle options for a more dynamic effect
-  const particlesOptions = {
-    background: { color: { value: "transparent" } },
-    fpsLimit: 60,
-    interactivity: {
-      events: {
-        onClick: { enable: true, mode: "push" },
-        onHover: { enable: true, mode: "repulse" }
-      },
-      modes: {
-        push: { quantity: 4 },
-        repulse: { distance: 100, duration: 0.4 }
-      },
-      resize: true
-    },
-    particles: {
-      color: { value: ["#7c3aed", "#06b6d4", "#ec4899"] },
-      links: {
-        color: "#7c3aed",
-        distance: 150,
-        enable: true,
-        opacity: 0.4,
-        width: 1
-      },
-      move: {
-        direction: "none" as const,
-        enable: true,
-        outModes: { default: "bounce" as const },
-        random: true,
-        speed: 1,
-        straight: false
-      },
-      number: {
-        density: { enable: true, area: 800 },
-        value: 50
-      },
-      opacity: {
-        value: 0.5,
-        animation: {
-          enable: true,
-          speed: 1,
-          minimumValue: 0.1
-        }
-      },
-      shape: {
-        type: ["circle", "triangle", "square"]
-      },
-      size: {
-        value: { min: 1, max: 3 },
-        animation: {
-          enable: true,
-          speed: 2,
-          minimumValue: 0.1
-        }
-      }
-    },
-    detectRetina: true
-  };
-
   return (
     <div className="min-h-screen">
       <ScrollToTop />
@@ -498,12 +439,6 @@ export default function Home() {
       
       {/* Hero Section */}
       <section className="relative flex flex-col items-center justify-center min-h-screen text-center overflow-hidden pt-16">
-        <Particles
-          id="tsparticles"
-          className="absolute inset-0 z-0"
-          init={loadSlim}
-          options={particlesOptions}
-        />
         <div className="relative z-10 w-full max-w-4xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -581,7 +516,7 @@ export default function Home() {
 
       {/* About Me Section */}
       <section id="about" className="relative py-24">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background-light dark:to-background-dark" />
+        <div className="absolute inset-0 bg-white/10 dark:bg-black/10 z-0" />
         <div className="relative z-10 max-w-4xl mx-auto px-4">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -648,7 +583,7 @@ export default function Home() {
 
       {/* Skills Section */}
       <section id="skills" className="relative py-24">
-        <div className="absolute inset-0 bg-gradient-to-b from-background-light/50 to-background-light dark:from-background-dark/50 dark:to-background-dark" />
+        <div className="absolute inset-0 bg-white/10 dark:bg-black/10 z-0" />
         <div className="relative z-10 max-w-7xl mx-auto px-4">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -700,7 +635,7 @@ export default function Home() {
 
       {/* Projects Section */}
       <section id="projects" className="relative py-24">
-        <div className="absolute inset-0 bg-gradient-to-b from-background-light to-background-light dark:from-background-dark dark:to-background-dark" />
+        <div className="absolute inset-0 bg-white/10 dark:bg-black/10 z-0" />
         <div className="relative z-10 max-w-7xl mx-auto px-4">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -797,7 +732,7 @@ export default function Home() {
 
       {/* Resume Section */}
       <section id="resume" className="relative py-24">
-        <div className="absolute inset-0 bg-gradient-to-b from-background-light to-background-light dark:from-background-dark dark:to-background-dark" />
+        <div className="absolute inset-0 bg-white/10 dark:bg-black/10 z-0" />
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -1023,7 +958,7 @@ export default function Home() {
 
       {/* Contact Section */}
       <section id="contact" className="relative py-24">
-        <div className="absolute inset-0 bg-gradient-to-b from-background-light to-background-light dark:from-background-dark dark:to-background-dark" />
+        <div className="absolute inset-0 bg-white/10 dark:bg-black/10 z-0" />
         <div className="relative z-10 max-w-4xl mx-auto px-4">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -1168,9 +1103,9 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="relative py-12 bg-gradient-to-r from-gray-900 to-gray-800 text-white">
+      <footer className="relative py-4 bg-gradient-to-r from-gray-900 to-gray-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-2">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -1210,7 +1145,7 @@ export default function Home() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-8 pt-8 border-t border-gray-700 text-center"
+            className="mt-2 pt-2 border-t border-gray-700 text-center"
           >
             <p className="text-sm text-gray-400">
               © 2024 Saheli Mahapatra. All rights reserved.
