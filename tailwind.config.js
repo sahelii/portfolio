@@ -50,6 +50,7 @@ module.exports = {
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
         'gradient-primary': 'linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%)',
         'gradient-accent': 'linear-gradient(135deg, #ec4899 0%, #f59e0b 100%)',
+        'gradient-radial': 'radial-gradient(ellipse at center, var(--tw-gradient-stops))',
       },
       boxShadow: {
         'glow': '0 0 15px rgba(124, 58, 237, 0.5)',

@@ -37,7 +37,7 @@ export class ErrorBoundary extends Component<Props, State> {
       }
 
       return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background-light via-background to-background-light dark:from-background-dark dark:via-background-dark/95 dark:to-background-dark">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background-light to-background-light dark:from-background-dark dark:to-background-dark">
           <div className="max-w-md mx-auto text-center p-8 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl">
             <div className="mb-6">
               <FaExclamationTriangle className="text-6xl text-red-500 mx-auto mb-4" />
