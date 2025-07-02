@@ -1,0 +1,21 @@
+{
+  "name": "Saheli Mahapatra - Full Stack Developer",
+  "short_name": "Saheli Portfolio",
+  "description": "Full Stack Developer specializing in MERN stack, .NET, and PostgreSQL",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#7c3aed",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "productivity", "utilities"],
+  "lang": "en",
+  "dir": "ltr"
+} 

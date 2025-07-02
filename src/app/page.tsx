@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useSpring } from "framer-motion";
-import { FaReact, FaNodeJs, FaDocker, FaGithub, FaLinkedin, FaEnvelope, FaExternalLinkAlt, FaHtml5, FaCss3Alt, FaBootstrap, FaAngular, FaArrowUp, FaChevronDown, FaPython, FaJs } from "react-icons/fa";
+import { FaReact, FaNodeJs, FaDocker, FaGithub, FaLinkedin, FaEnvelope, FaExternalLinkAlt, FaHtml5, FaCss3Alt, FaBootstrap, FaAngular, FaArrowUp, FaChevronDown, FaPython, FaJs, FaCheck, FaExclamationTriangle } from "react-icons/fa";
 import { SiNextdotjs, SiMongodb, SiDotnet, SiPostgresql, SiTailwindcss, SiTypescript, SiExpress, SiFlutter, SiDart } from "react-icons/si";
 import { Typewriter } from "react-simple-typewriter";
 import { Particles } from "react-tsparticles";
@@ -76,7 +76,7 @@ const projects = [
   }
 ];
 
-const resumeLink = "/SaheliMahapatra.pdf";
+// Resume link is now handled by the download function
 
 const socialLinks = [
   { Icon: FaGithub, url: "https://github.com/sahelii", label: "GitHub" },
@@ -233,6 +233,9 @@ const ScrollDownIndicator = () => (
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
+  const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
+  const [downloadingResume, setDownloadingResume] = useState(false);
 
   useEffect(() => {
     // Simulate loading time
@@ -242,6 +245,74 @@ export default function Home() {
 
     return () => clearTimeout(timer);
   }, []);
+
+  const validateForm = (formData: FormData) => {
+    const errors: { [key: string]: string } = {};
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const message = formData.get('message') as string;
+
+    if (!name || name.trim().length < 2) {
+      errors.name = 'Name must be at least 2 characters long';
+    }
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      errors.email = 'Please enter a valid email address';
+    }
+
+    if (!message || message.trim().length < 10) {
+      errors.message = 'Message must be at least 10 characters long';
+    }
+
+    return errors;
+  };
+
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormStatus('loading');
+    setFormErrors({});
+
+    const formData = new FormData(e.currentTarget);
+    const errors = validateForm(formData);
+
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      setFormStatus('error');
+      return;
+    }
+
+    try {
+      const response = await fetch('https://formspree.io/f/manozyzk', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json',
+        },
+      });
+
+      const result = await response.json();
+      console.log('Formspree response:', result);
+      
+      if (response.ok && result.ok) {
+        setFormStatus('success');
+        e.currentTarget.reset();
+      } else {
+        console.error('Formspree error:', result);
+        setFormStatus('error');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setFormStatus('error');
+    }
+  };
+
+  const handleResumeDownload = () => {
+    setDownloadingResume(true);
+    // Simulate download time
+    setTimeout(() => {
+      setDownloadingResume(false);
+    }, 1000);
+  };
 
   if (isLoading) {
     return <LoadingState />;
@@ -360,13 +431,13 @@ export default function Home() {
               >
                 Contact Me
               </a>
-              <a
-                href={resumeLink}
-                download
-                className="px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 text-gray-900 dark:text-white rounded-full hover:bg-white/20 transition-all duration-300 transform hover:scale-105 font-medium"
+              <button
+                onClick={handleResumeDownload}
+                disabled={downloadingResume}
+                className="px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 text-gray-900 dark:text-white rounded-full hover:bg-white/20 transition-all duration-300 transform hover:scale-105 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Download Resume
-              </a>
+                {downloadingResume ? 'Downloading...' : 'Download Resume'}
+              </button>
             </motion.div>
           </motion.div>
 
@@ -578,17 +649,21 @@ export default function Home() {
           >
             Resume
           </motion.h2>
-          <motion.a
-            href={resumeLink}
-            download
+          <motion.button
+            onClick={handleResumeDownload}
+            disabled={downloadingResume}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: downloadingResume ? 1 : 1.05 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="inline-block px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-full hover:shadow-glow transition-all duration-300 transform hover:scale-105 font-medium"
+            className={`inline-block px-8 py-4 rounded-full transition-all duration-300 transform font-medium ${
+              downloadingResume
+                ? 'bg-gray-400 cursor-not-allowed'
+                : 'bg-gradient-to-r from-primary to-secondary text-white hover:shadow-glow hover:scale-105'
+            }`}
           >
-            Download Full Resume
-          </motion.a>
+            {downloadingResume ? 'Downloading...' : 'Download Full Resume'}
+          </motion.button>
 
           {/* Experience Timeline */}
           <motion.div 
@@ -742,7 +817,8 @@ export default function Home() {
                       transition={{ delay: 0.4 }}
                       className="mt-2 text-gray-700 dark:text-gray-300"
                     >
-Worked on a farmer-first mobile platform, delivering backend systems that supported geolocation, personalized access, and real-time data flows.                    </motion.p>
+                      Worked on a farmer-first mobile platform, delivering backend systems that supported geolocation, personalized access, and real-time data flows.
+                    </motion.p>
                   </div>
                 </motion.div>
 
@@ -800,43 +876,103 @@ Worked on a farmer-first mobile platform, delivering backend systems that suppor
             Contact
           </motion.h2>
           <motion.form 
-            action="https://formspree.io/f/manozyzk" 
-            method="POST"
+            onSubmit={handleFormSubmit}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="max-w-md mx-auto mb-10 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 flex flex-col gap-6"
           >
             <div className="space-y-4">
-              <input 
-                type="text" 
-                name="name"
-                placeholder="Name" 
-                required
-                className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-all duration-300" 
-              />
-              <input 
-                type="email" 
-                name="email"
-                placeholder="Email" 
-                required
-                className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-all duration-300" 
-              />
-              <textarea 
-                name="message"
-                placeholder="Message" 
-                rows={4} 
-                required
-                className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-all duration-300 resize-none"
-              />
+              <div>
+                <input 
+                  type="text" 
+                  name="name"
+                  placeholder="Name" 
+                  required
+                  className={`w-full px-4 py-3 bg-white/5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-all duration-300 ${
+                    formErrors.name ? 'border-red-500 focus:ring-red-500/50' : 'border-white/20'
+                  }`}
+                />
+                {formErrors.name && (
+                  <p className="mt-1 text-sm text-red-500 flex items-center gap-1">
+                    <FaExclamationTriangle className="text-xs" />
+                    {formErrors.name}
+                  </p>
+                )}
+              </div>
+              
+              <div>
+                <input 
+                  type="email" 
+                  name="email"
+                  placeholder="Email" 
+                  required
+                  className={`w-full px-4 py-3 bg-white/5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-all duration-300 ${
+                    formErrors.email ? 'border-red-500 focus:ring-red-500/50' : 'border-white/20'
+                  }`}
+                />
+                {formErrors.email && (
+                  <p className="mt-1 text-sm text-red-500 flex items-center gap-1">
+                    <FaExclamationTriangle className="text-xs" />
+                    {formErrors.email}
+                  </p>
+                )}
+              </div>
+              
+              <div>
+                <textarea 
+                  name="message"
+                  placeholder="Message" 
+                  rows={4} 
+                  required
+                  className={`w-full px-4 py-3 bg-white/5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-all duration-300 resize-none ${
+                    formErrors.message ? 'border-red-500 focus:ring-red-500/50' : 'border-white/20'
+                  }`}
+                />
+                {formErrors.message && (
+                  <p className="mt-1 text-sm text-red-500 flex items-center gap-1">
+                    <FaExclamationTriangle className="text-xs" />
+                    {formErrors.message}
+                  </p>
+                )}
+              </div>
             </div>
+            
+            {/* Form Status Messages */}
+            {formStatus === 'success' && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="p-3 bg-green-500/20 border border-green-500/30 rounded-lg flex items-center gap-2 text-green-600 dark:text-green-400"
+              >
+                <FaCheck className="text-sm" />
+                Message sent successfully! I&apos;ll get back to you soon.
+              </motion.div>
+            )}
+            
+            {formStatus === 'error' && Object.keys(formErrors).length === 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="p-3 bg-red-500/20 border border-red-500/30 rounded-lg flex items-center gap-2 text-red-600 dark:text-red-400"
+              >
+                <FaExclamationTriangle className="text-sm" />
+                Something went wrong. Please try again later or contact me directly at saheliofficial22@gmail.com
+              </motion.div>
+            )}
+            
             <motion.button 
               type="submit" 
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:shadow-glow transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 font-medium"
+              disabled={formStatus === 'loading'}
+              whileHover={{ scale: formStatus === 'loading' ? 1 : 1.02 }}
+              whileTap={{ scale: formStatus === 'loading' ? 1 : 0.98 }}
+              className={`px-6 py-3 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 font-medium ${
+                formStatus === 'loading'
+                  ? 'bg-gray-400 cursor-not-allowed'
+                  : 'bg-gradient-to-r from-primary to-secondary text-white hover:shadow-glow'
+              }`}
             >
-              Send Message
+              {formStatus === 'loading' ? 'Sending...' : 'Send Message'}
             </motion.button>
           </motion.form>
 
